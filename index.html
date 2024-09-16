@@ -1,0 +1,98 @@
+<html>
+
+<head>
+  <title>Page d'accueil - Bastien</title>
+  <link rel="stylesheet" href="stylesheet.css"> <!-- Ta feuille de style locale -->
+  <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,600;1,300;1,400&display=swap" rel="stylesheet">
+  <script src="script.js"></script>
+</head>
+
+<body>
+  <header>
+  </header>
+  <main>
+    <div id="bloc-central" class="transition">
+      <h1 id="name">Bastien Barnéoud</h1>
+      <h3 id="description">Ingénieur en Aérospatial</h3>
+      <p id="cv" class="animated-text">Curriculum Vitae</p>
+      <p href="#portfolio" id="portfolio" class="animated-text">Portfolio</p>
+      <p id="contact" class="animated-text">Contact</p>
+      <div>
+        <a class="animated-text" href="https://www.instagram.com/timepasteque/">
+          <img src="instagram-icon.png" alt="Instagram Icon">
+        </a>
+        <a class="animated-text" href="https://www.linkedin.com/in/bastien.barneoud/">
+          <img src="linkedin-icon.png" alt="LinkedIn Icon">
+        </a>
+      </div>
+    </div>
+    <div id="cv-page" class="transition hidden-page">
+      <h1>CV</h1>
+      <p>abribus</p>
+      <p>été hess</p>
+      <p>ut big mongole</p>
+    </div>
+
+    <div id="portfolio-page" class="transition hidden-page">
+      <h1>POIRFOLO</h1>
+      <p>voici une entrée dans le portfolio</p>
+      <p>aaaaaaaaaaaaaa</p>
+      <p>Portfolio</p>
+      <div class="project-cards">
+        <div class="card" onclick="showProjectDetails('project1')">
+          <h2>Project 1</h2>
+          <p>Short description of Project 1.</p>
+        </div>
+        <div class="card" onclick="showProjectDetails('project2')">
+          <h2>Project 2</h2>
+          <p>Short description of Project 2.</p>
+        </div>
+        <div class="card" onclick="showProjectDetails('project3')">
+          <h2>Project 3</h2>
+          <p>Short description of Project 3.</p>
+        </div>
+        <div class="card" onclick="showProjectDetails('project4')">
+          <h2>Project 4</h2>
+          <p>Short description of Project 4.</p>
+        </div>
+      </div>
+      
+    <div id="project-details" class="hidden-page">
+      <h1 id="project-title"></h1>
+      <p id="project-description"></p>
+      <button onclick="hideProjectDetails()">Close</button>
+    </div>
+
+    <script>
+      function showProjectDetails(project) {
+        const details = {
+          project1: { title: "Project 1", description: "Detailed information about Project 1." },
+          project2: { title: "Project 2", description: "Detailed information about Project 2." },
+          project3: { title: "Project 3", description: "Detailed information about Project 3." },
+          project4: { title: "Project 4", description: "Detailed information about Project 4." },
+        };
+        
+        document.getElementById('project-title').innerText = details[project].title;
+        document.getElementById('project-description').innerText = details[project].description;
+        document.getElementById('project-details').classList.remove('hidden-page');
+      }
+
+      function hideProjectDetails() {
+        document.getElementById('project-details').classList.add('hidden-page');
+      }
+    </script>
+    </div>
+    <div id="contact-page" class="transition hidden-page">
+      <h1>CONTACC</h1>
+      <p>le lemail.fr</p>
+      <p>g ton adresse</p>
+      <p>voilà</p>
+    </div>
+
+
+  </main>
+  <footer>
+  </footer>
+</body>
+
+</html>
