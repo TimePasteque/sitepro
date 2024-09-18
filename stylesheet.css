@@ -125,3 +125,31 @@ body.transitioning {
 .shift-left {
   transform: translateX(-110%);
 }
+
+.portfolio-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px; /* Adjust the gap between cards as needed */
+}
+
+.portfolio-card {
+  border: 0.05rem solid white;
+  border-radius: 8px; /* Optional: Add rounded corners */
+  padding: 16px; /* Padding inside the card */
+  width: 100px; /* Width of the card */
+  box-shadow: 0 4px 8px rgba(124, 123, 123, 0.1); /* Optional: Add a shadow for better visual effect */
+  transition: transform 0.2s; /* Optional: Add a transition effect */
+}
+
+.portfolio-card:hover {
+  transform: scale(1.05); /* Optional: Scale up the card on hover */
+}
+
+.portfolio-card h2 {
+  margin-top: 0;
+}
+
+.portfolio-card p {
+  margin-bottom: 0;
+}
+
