@@ -93,13 +93,16 @@ body.transitioning {
 }
 
 
+
+/* Pages dynamiques */
+
 .hidden-page {
 	position: absolute;
   top: 7.5%;
   left: 105vw;
   width: 70vw;
   height: 80vh;
-  background-color: rgba(0, 0, 0, 0.61); /* Juste pour visualiser */
+  background-color: rgba(0, 0, 0, 0.747); /* Juste pour visualiser */
   color: white;
 
   border: 0.05rem solid white;
@@ -226,11 +229,14 @@ body.transitioning {
   transform: scale(1.05); /* Optional: Scale up the card on hover */
 }
 
-.portfolio-card h2 {
+.portfolio-card h3 {
   margin-top: 0;
+  margin-bottom: 0.5em;
 }
 
 .portfolio-card p {
+  margin-top: 0;
   margin-bottom: 0;
+  font-size: small;
 }
 

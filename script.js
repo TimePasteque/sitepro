@@ -99,32 +99,43 @@ document.addEventListener('DOMContentLoaded', function() {
   // Attach event listeners to links initially
   attachLinkEventListeners();
 
-  function fetchPortfolioData() {
-    fetch('/portfolio-contents')
-      .then(response => response.json())
-      .then(data => {
-        const portfolioContainer = document.getElementById('portfolio-container');
-        portfolioContainer.innerHTML = ''; // Clear existing content
 
-        data.forEach(project => {
-          const card = document.createElement('div');
-          card.className = 'portfolio-card';
-          card.onclick = () => showProjectDetails(project.id);
+  /* PORTFOLIO-CONTENTS STORED HERE FOR NOW */
+  // Project data stored directly in JavaScript
+  const projects = [
+    {
+      title: "Crunchair",
+      description: "Crunchair is a project that aims to create a smart chair system..."
+    },
 
-          const title = document.createElement('h2');
-          title.textContent = project.title;
+    {
+      title: "Domotique",
+      description: "Domotique is a home automation project that integrates various smart devices..."
+    }
+    // Add more projects as needed
+  ];
 
-          const description = document.createElement('p');
-          description.textContent = project.description;
+  function displayPortfolioData() {
+    const portfolioContainer = document.getElementById('portfolio-container');
+    portfolioContainer.innerHTML = ''; // Clear existing content
+    
+    // To change later on for a FETCH as data will be stored in hosted server
+    projects.forEach(project => {
+      const card = document.createElement('div');
+      card.className = 'portfolio-card';
 
-          card.appendChild(title);
-          card.appendChild(description);
-          portfolioContainer.appendChild(card);
-        });
-      })
-      .catch(error => console.error('Error fetching portfolio data:', error));
+      const title = document.createElement('h3');
+      title.textContent = project.title;
+
+      const description = document.createElement('p');
+      description.textContent = project.description;
+
+      card.appendChild(title);
+      card.appendChild(description);
+      portfolioContainer.appendChild(card);
+    });
   }
 
-  fetchPortfolioData();
+  displayPortfolioData();
 
 });
