@@ -95,11 +95,11 @@ body.transitioning {
 
 .hidden-page {
 	position: absolute;
-  top: 5%;
-  left: 100%;
-  width: 60vw;
+  top: 7.5%;
+  left: 105vw;
+  width: 70vw;
   height: 80vh;
-  background-color: none; /* Juste pour visualiser */
+  background-color: rgba(0, 0, 0, 0.61); /* Juste pour visualiser */
   color: white;
 
   border: 0.05rem solid white;
@@ -113,17 +113,94 @@ body.transitioning {
 }
 
 /* Transitions */
+/* Existing keyframes for reduceLeft */
+@keyframes reduceLeft {
+  0% {
+      transform: translateX(0) scale(1);
+  }
+  100% {
+      transform: translateX(-34vw) scale(0.5); /* Adjust as needed */
+  }
+}
+
+/* Existing keyframes for shiftLeft */
+@keyframes shiftLeft {
+  0% {
+      transform: translateX(0vw);
+  }
+  100% {
+      transform: translateX(-85vw); /* Adjust as needed */
+  }
+}
+
+/* New keyframes for reverse reduceLeft */
+@keyframes reduceLeftReverse {
+  0% {
+      transform: translateX(-34vw) scale(0.5); /* Adjust as needed */
+  }
+  100% {
+      transform: translateX(0) scale(1);
+  }
+}
+
+/* New keyframes for reverse shiftLeft */
+@keyframes shiftLeftReverse {
+  0% {
+      transform: translateX(-85vw); /* Adjust as needed */
+  }
+  100% {
+      transform: translateX(0vw);
+  }
+}
+
+/* Apply the animations */
+.reduce-left {
+  animation: reduceLeft 1s forwards;
+}
+
+.reduce-left-reverse {
+  animation: reduceLeftReverse 1s forwards;
+}
+
+.shift-left {
+  animation: shiftLeft 1s forwards;
+}
+
+.shift-left-reverse {
+  animation: shiftLeftReverse 1s forwards;
+}
 
 .transition {
   transition: all 0.9s ease;
 }
 
-.reduce-left {
-  transform: translateX(-100%) scale(0.5);
+/* reduce-left animation */
+#bloc-central.reduce-left {
+  animation: reduceLeft 1s forwards;
+}
+
+/* Keyframes for reduceLeft */
+@keyframes reduceLeft {
+  0% {
+      transform: translateX(0) scale(1);
+  }
+  100% {
+      transform: translateX(-34vw) scale(0.5); /* Adjust as needed */
+  }
 }
 
 .shift-left {
-  transform: translateX(-110%);
+  animation: shiftLeft 1s forwards;
+}
+
+/* Keyframes for shiftLeft */
+@keyframes shiftLeft {
+  0% {
+      transform: translateX(0vw);
+  }
+  100% {
+      transform: translateX(-85vw); /* Adjust as needed */
+  }
 }
 
 .portfolio-container {
@@ -136,7 +213,7 @@ body.transitioning {
   border: 0.05rem solid white;
   border-radius: 8px; /* Optional: Add rounded corners */
   padding: 16px; /* Padding inside the card */
-  width: 100px; /* Width of the card */
+  width: 20vw; /* Width of the card */
   box-shadow: 0 4px 8px rgba(124, 123, 123, 0.1); /* Optional: Add a shadow for better visual effect */
   transition: transform 0.2s; /* Optional: Add a transition effect */
 }
