@@ -156,10 +156,12 @@ body.transitioning {
 /* Apply the animations */
 .reduce-left {
   animation: reduceLeft 1s forwards;
+  cursor: pointer;
 }
 
 .reduce-left-reverse {
   animation: reduceLeftReverse 1s forwards;
+  cursor: default;
 }
 
 .shift-left {

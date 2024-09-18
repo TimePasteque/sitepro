@@ -1,26 +1,31 @@
 const animatedTexts = document.querySelectorAll('.animated-text');
 
 animatedTexts.forEach(text => {
-    text.addEventListener('mouseover', e => {
-        animatedTexts.forEach(otherText => {
-            if (otherText !== e.target) {
-                otherText.classList.add('darkened');
-            }
-        });
+  text.addEventListener('mouseover', e => {
+    animatedTexts.forEach(otherText => {
+      if (otherText !== e.target) {
+        otherText.classList.add('darkened');
+      }
     });
+  });
 
-    text.addEventListener('mouseout', e => {
-        animatedTexts.forEach(otherText => {
-            otherText.classList.remove('darkened');
-        });
+  text.addEventListener('mouseout', e => {
+    animatedTexts.forEach(otherText => {
+      otherText.classList.remove('darkened');
     });
+  });
 });
 
+
+/* TRANSISTIONS PAGES */
 //Mapping de N pages à N liens
+
 document.addEventListener('DOMContentLoaded', function() {
   var body = document.getElementsByTagName('body')[0];
   var blocCentral = document.getElementById('bloc-central');
   
+  var activePage = null;
+
   // Mapping des liens avec leurs pages correspondantes
   var pageMapping = {
     'cv': 'cv-page',
@@ -29,37 +34,68 @@ document.addEventListener('DOMContentLoaded', function() {
     // Ajoute d'autres liens/pages ici
   };
 
-  // Ajouter un event listener sur chaque lien du menu
-  Object.keys(pageMapping).forEach(function(linkId) {
-    var link = document.getElementById(linkId);
+  function returnToMenu() {
+    if (blocCentral.classList.contains('reduce-left')) {
+      // Close active page
+      if (activePage) {
+        activePage.classList.remove('shift-left');
+        blocCentral.classList.remove('reduce-left');
+        body.classList.remove(activePage.id + '-open');
+        
+        // Remove the event listener from bloc-central
+        blocCentral.removeEventListener('click', returnToMenu);
+        
+        activePage.classList.add('shift-left-reverse');
+        blocCentral.classList.add('reduce-left-reverse');
+
+        setTimeout(() => {
+          activePage.classList.remove('shift-left-reverse');
+          blocCentral.classList.remove('reduce-left-reverse');
+          activePage = null;
+
+          // Reattach event listeners to links
+          attachLinkEventListeners();
+        }, 900);
+      }
+    }
+  }
+
+  function goToPage(e) {
+    e.preventDefault();
+    var linkId = e.target.id;
     var pageId = pageMapping[linkId];
     var pageElement = document.getElementById(pageId);
 
-    link.addEventListener('click', function(e) {
-      e.preventDefault();
+    blocCentral.classList.add('reduce-left');
+    pageElement.classList.add('shift-left');
+    body.classList.add(pageId + '-open');
 
-      // Fermer toutes les autres pages
-      document.querySelectorAll('.hidden-page').forEach(function(page) {
-        page.classList.remove('shift-left');
-      });
+    // Remove the event listener from all links
+    detachLinkEventListeners();
 
-      // Si la page correspondante est déjà ouverte, la fermer
-      if (body.classList.contains(pageId + '-open')) {
-        blocCentral.classList.remove('reduce-left');
-        body.classList.remove(pageId + '-open');
-      } else {
-        // Sinon, ouvrir la page
-        blocCentral.classList.add('reduce-left');
-        pageElement.classList.add('shift-left');
+    setTimeout(() => {
+      // Attach event listener to bloc-central to return to menu
+      blocCentral.addEventListener('click', returnToMenu);
+    }, 900);
 
-        // Fermer les autres pages ouvertes
-        Object.keys(pageMapping).forEach(function(otherLinkId) {
-          body.classList.remove(pageMapping[otherLinkId] + '-open');
-        });
+    // Set active page as current
+    activePage = pageElement;
+  }
 
-        // Ouvrir la page actuelle
-        body.classList.add(pageId + '-open');
-      }
+  function attachLinkEventListeners() {
+    Object.keys(pageMapping).forEach(function(linkId) {
+      var link = document.getElementById(linkId);
+      link.addEventListener('click', goToPage);
     });
-  });
+  }
+
+  function detachLinkEventListeners() {
+    Object.keys(pageMapping).forEach(function(linkId) {
+      var link = document.getElementById(linkId);
+      link.removeEventListener('click', goToPage);
+    });
+  }
+
+  // Attach event listeners to links initially
+  attachLinkEventListeners();
 });
