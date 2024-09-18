@@ -98,4 +98,33 @@ document.addEventListener('DOMContentLoaded', function() {
 
   // Attach event listeners to links initially
   attachLinkEventListeners();
+
+  function fetchPortfolioData() {
+    fetch('/portfolio-contents')
+      .then(response => response.json())
+      .then(data => {
+        const portfolioContainer = document.getElementById('portfolio-container');
+        portfolioContainer.innerHTML = ''; // Clear existing content
+
+        data.forEach(project => {
+          const card = document.createElement('div');
+          card.className = 'portfolio-card';
+          card.onclick = () => showProjectDetails(project.id);
+
+          const title = document.createElement('h2');
+          title.textContent = project.title;
+
+          const description = document.createElement('p');
+          description.textContent = project.description;
+
+          card.appendChild(title);
+          card.appendChild(description);
+          portfolioContainer.appendChild(card);
+        });
+      })
+      .catch(error => console.error('Error fetching portfolio data:', error));
+  }
+
+  fetchPortfolioData();
+
 });

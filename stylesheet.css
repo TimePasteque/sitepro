@@ -205,7 +205,9 @@ body.transitioning {
   }
 }
 
-.portfolio-container {
+
+/* PORTFOLIO CONTAINER AND CONTENTS */
+#portfolio-container {
   display: flex;
   flex-wrap: wrap;
   gap: 16px; /* Adjust the gap between cards as needed */
